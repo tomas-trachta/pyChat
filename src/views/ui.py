@@ -1,6 +1,5 @@
-from PySide6.QtWidgets import QTextBrowser, QLineEdit, QVBoxLayout, QWidget
+from PySide6.QtWidgets import QTextEdit, QLineEdit, QVBoxLayout, QWidget
 from PySide6.QtCore import Signal, Slot
-from PySide6 import QtGui
 from src.views.mainwindow import MainWindow
 from src.viewmodels.data import Data
 from src.viewmodels.network import Network
@@ -31,7 +30,7 @@ class UI(MainWindow, Network, Data):
         self.targetIP.setText("Enter target IP and press <Enter>")
         self.targetIP.returnPressed.connect(self.setUpIp)
 
-        self.chat = QTextBrowser(self)
+        self.chat = QTextEdit(self)
         self.chat.setReadOnly(True)
 
         self.chatInput = QLineEdit(self)
@@ -78,8 +77,8 @@ class UI(MainWindow, Network, Data):
 
     @Slot()
     def transferData(self):
+        self.chat.setText("")
         self.chat.setText(self.data.DATA)
-        self.chat.verticalScrollBar().setValue(self.chat.verticalScrollBar().maximum())
 
     def waitForData(self):
         while True:
