@@ -32,7 +32,6 @@ class UI(MainWindow, Network, Data):
         self.targetIP.returnPressed.connect(self.setUpIp)
 
         self.chat = QTextBrowser(self)
-        self.chat.setReadOnly(True)
 
         self.chatInput = QLineEdit(self)
         self.chatInput.returnPressed.connect(self.addUserData)
