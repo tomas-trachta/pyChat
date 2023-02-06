@@ -8,7 +8,7 @@ class Server(ServerData, Client):
 
     def __init__(self):
 
-        super().__init__("", False, self.getMyIp(), 2, 443, "utf-8", "!CONN")
+        super().__init__("", False, self.getMyIp(), 2, 5005, "utf-8", "!CONN")
 
         print(self.SERVER)
         self.ADDR = (self.SERVER, self.PORT)
@@ -28,7 +28,7 @@ class Server(ServerData, Client):
         conn, addr = self.server_.accept()
         print("connected")
         print(addr)
-        Client().__init__(True, addr)
+        Client().__init__(True, (addr[0],5005))
 
         connected = True
         while connected:

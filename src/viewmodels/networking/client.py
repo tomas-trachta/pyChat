@@ -8,12 +8,12 @@ class Client(ClientData):
 
     def __init__(self, serv=False, addr : tuple = ()):
         if serv==False:
-            super().__init__(False, "", False, "", None, 2, 443, "utf-8", "!CONN")
+            super().__init__(False, "", False, "", None, 2, 5005, "utf-8", "!CONN")
 
             thread1 = threading.Thread(target=self.waitForIp)
             thread1.start()
         else:
-            super().__init__(False, "", False, "", None, 2, 443, "utf-8", "!CONN")
+            super().__init__(False, "", False, "", None, 2, 5005, "utf-8", "!CONN")
             self.connect_to_target(addr)
 
     def waitForIp(self):
