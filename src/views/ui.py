@@ -1,6 +1,5 @@
 from PySide6.QtWidgets import QTextBrowser, QLineEdit, QVBoxLayout, QWidget
 from PySide6.QtCore import Signal, Slot
-from PySide6 import QtGui
 from src.views.mainwindow import MainWindow
 from src.viewmodels.data import Data
 from src.viewmodels.network import Network

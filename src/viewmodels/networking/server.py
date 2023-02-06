@@ -2,6 +2,7 @@ import socket
 import threading
 from time import sleep
 from src.models.data import ServerData
+from src.viewmodels.networking.client import Client
 
 class Server(ServerData):
 
@@ -27,6 +28,7 @@ class Server(ServerData):
         conn, addr = self.server_.accept()
         print("connected")
         print(addr)
+        Client.connect_to_target_signal.emit(addr[0])
 
         connected = True
         while connected:
