@@ -28,7 +28,7 @@ class Server(ServerData):
         conn, addr = self.server_.accept()
         print("connected")
         print(addr)
-        Client.connect_to_target_signal.emit(addr[0])
+        Client.connect_to_target(addr[0])
 
         connected = True
         while connected:

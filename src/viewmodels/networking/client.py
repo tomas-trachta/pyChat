@@ -6,6 +6,7 @@ from PySide6.QtCore import Signal, Slot
 
 
 class Client(ClientData):
+    @staticmethod
     connect_to_target_signal = Signal(str)
 
     def __init__(self):
@@ -37,18 +38,13 @@ class Client(ClientData):
                 sleep(0.01)
         else: print(f"[ERROR {error}]")
 
-    @Slot(str)
-    def connect_to_target(self, ADDR):
+    @staticmethod
+    def connect_to_target(ADDR):
         print("connecting..")
-        self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        error = self.client.connect_ex(ADDR)
+        client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        error = client.connect_ex(ADDR)
         if error == 0:
             print("connected")
-            while True:
-                if self.sendMsg == True and self.client != None:
-                    self.sendMsg = False
-                    self.send()
-                sleep(0.01)
         else: print(f"[ERROR {error}]")
 
     def send(self):
