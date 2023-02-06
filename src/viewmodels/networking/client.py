@@ -22,13 +22,15 @@ class Client(ClientData):
         print("connecting..")
         self.ADDR = (self._SERVER_, self.PORT)
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        print(self.client.connect_ex(self.ADDR))
-        print("connected")
-        while True:
-            if self.sendMsg == True and self.client != None:
-                self.sendMsg = False
-                self.send()
-            sleep(0.01)
+        error = self.client.connect_ex(self.ADDR)
+        if error == 0:
+            print("connected")
+            while True:
+                if self.sendMsg == True and self.client != None:
+                    self.sendMsg = False
+                    self.send()
+                sleep(0.01)
+        else: print(f"[ERROR {error}]")
 
     def send(self):
         msg = self.message.encode(self.FORMAT)

@@ -26,6 +26,7 @@ class Server(ServerData):
         print("listening")
         conn, addr = self.server_.accept()
         print("connected")
+        print(addr)
 
         connected = True
         while connected:
