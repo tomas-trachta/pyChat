@@ -2,20 +2,19 @@ import socket
 import threading
 from time import sleep
 from src.models.data import ClientData
-from PySide6.QtCore import Signal, Slot
 
 
 class Client(ClientData):
-    @staticmethod
-    connect_to_target_signal = Signal(str)
 
-    def __init__(self):
-        super().__init__(False, "", False, "", None, 2, 443, "utf-8", "!CONN")
+    def __init__(self, serv=False, addr : tuple = ()):
+        if serv==False:
+            super().__init__(False, "", False, "", None, 2, 443, "utf-8", "!CONN")
 
-        thread1 = threading.Thread(target=self.waitForIp)
-        thread1.start()
-
-        self.connect_to_target_signal.connect(self.connect_to_target)
+            thread1 = threading.Thread(target=self.waitForIp)
+            thread1.start()
+        else:
+            super().__init__(False, "", False, "", None, 2, 443, "utf-8", "!CONN")
+            self.connect_to_target(addr)
 
     def waitForIp(self):
         while True:
@@ -38,8 +37,7 @@ class Client(ClientData):
                 sleep(0.01)
         else: print(f"[ERROR {error}]")
 
-    @staticmethod
-    def connect_to_target(ADDR):
+    def connect_to_target(self, ADDR):
         print("connecting..")
         client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         error = client.connect_ex(ADDR)
