@@ -1,6 +1,6 @@
 # pyChat
 
-End-to-end chat in python using socket module and PyQT. 
+Cross-platform End-to-end chat in python using socket module and PyQT. 
 
 
 ## Usage
