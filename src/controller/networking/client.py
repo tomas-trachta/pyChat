@@ -1,7 +1,7 @@
 import socket
 import threading
 from time import sleep
-from src.models.data import ClientData
+from src.model.data import ClientData
 
 
 class Client(ClientData):

@@ -1,6 +1,8 @@
 from PySide6.QtWidgets import QApplication
-from src.views.ui import UI
+from src.controller.appController import AppController
 
-app = QApplication()
-ui = UI()
-app.exec()
+
+if __name__ == "__main__":
+    app = QApplication()
+    appController = AppController()
+    app.exec()

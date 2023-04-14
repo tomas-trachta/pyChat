@@ -1,5 +1,4 @@
 from PySide6.QtWidgets import QMainWindow
-from PySide6.QtCore import QCoreApplication
 import os
 
 class MainWindow(QMainWindow):

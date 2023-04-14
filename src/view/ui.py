@@ -1,20 +1,10 @@
 from PySide6.QtWidgets import QTextBrowser, QLineEdit, QVBoxLayout, QWidget
-from PySide6.QtCore import Signal, Slot
-from src.views.mainwindow import MainWindow
-from src.viewmodels.data import Data
-from src.viewmodels.network import Network
-import threading
-from time import sleep
+from src.view.mainwindow import MainWindow
 
-class UI(MainWindow, Network, Data):
-    update_text_signal = Signal()
+class UI(MainWindow):
     def __init__(self):
-        MainWindow.__init__(self)
-        Network.__init__(self)
-        Data.__init__(self)
-        
+        MainWindow.__init__(self)        
         self.run()
-        self.update_text_signal.connect(self.transferData)
 
     ##############################################################
     ####################### UI creation ##########################
@@ -52,45 +42,7 @@ class UI(MainWindow, Network, Data):
         self.createWidgets()
         self.createLayout()
         self.show()
-        thread=threading.Thread(target=self.waitForData)
-        thread.start()
-
         
     #endregion
     ##############################################################
     ##############################################################
-
-
-    def setUpIp(self):
-        self._SERVER_ = self.targetIP.text()
-        self.ipSetUp = True
-        self.targetIP.setText("") 
-
-    def addUserData(self):
-        self.data.add(self.chatInput.text(), 0)
-        self.message = self.chatInput.text()
-        self.chatInput.setText("")
-        self.update_text_signal.emit()
-
-        self.sendMsg = True
-
-    @Slot()
-    def transferData(self):
-        self.chat.setText(self.data.DATA)
-        self.chat.verticalScrollBar().setValue(self.chat.verticalScrollBar().maximum())
-
-    def waitForData(self):
-        while True:
-            if self.newMsg == True:
-                self.data.add(self.msg, 1)
-                self.update_text_signal.emit()
-                self.newMsg = False
-            sleep(0.01)
-
-
-
-
-
-
-
-

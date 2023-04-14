@@ -1,8 +1,8 @@
 import socket
 import threading
 from time import sleep
-from src.models.data import ServerData
-from src.viewmodels.networking.client import Client
+from src.model.data import ServerData
+from src.controller.networking.client import Client
 
 class Server(ServerData, Client):
 
